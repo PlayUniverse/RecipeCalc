@@ -1,0 +1,88 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node",
+"class": "DataHandler",
+"language": "GDScript",
+"path": "res://scripts/DataHandler.gd"
+}, {
+"base": "Node",
+"class": "DataNode",
+"language": "GDScript",
+"path": "res://scripts/DataNode.gd"
+}, {
+"base": "Reference",
+"class": "GNode",
+"language": "GDScript",
+"path": "res://scripts/objects/GNode.gd"
+}, {
+"base": "Node",
+"class": "GraphLoader",
+"language": "GDScript",
+"path": "res://scripts/GraphLoader.gd"
+}, {
+"base": "Reference",
+"class": "GraphSorting",
+"language": "GDScript",
+"path": "res://scripts/GraphSorting.gd"
+}, {
+"base": "GNode",
+"class": "INode",
+"language": "GDScript",
+"path": "res://scripts/objects/INode.gd"
+}, {
+"base": "Node",
+"class": "ListHolder",
+"language": "GDScript",
+"path": "res://scripts/ListHolder.gd"
+}, {
+"base": "GNode",
+"class": "RNode",
+"language": "GDScript",
+"path": "res://scripts/objects/RNode.gd"
+}, {
+"base": "Reference",
+"class": "Recipe",
+"language": "GDScript",
+"path": "res://scripts/objects/Recipe.gd"
+}, {
+"base": "Node",
+"class": "TabManager",
+"language": "GDScript",
+"path": "res://scripts/TabManager.gd"
+} ]
+_global_script_class_icons={
+"DataHandler": "",
+"DataNode": "",
+"GNode": "",
+"GraphLoader": "",
+"GraphSorting": "",
+"INode": "",
+"ListHolder": "",
+"RNode": "",
+"Recipe": "",
+"TabManager": ""
+}
+
+[application]
+
+config/name="Recipe Calc"
+run/main_scene="res://Control.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/height=764
+window/size/resizable=false
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

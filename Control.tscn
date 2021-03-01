@@ -1,0 +1,836 @@
+[gd_scene load_steps=24 format=2]
+
+[ext_resource path="res://scripts/SelectionLoader.gd" type="Script" id=1]
+[ext_resource path="res://scripts/DataNode.gd" type="Script" id=2]
+[ext_resource path="res://styles/seperator.tres" type="StyleBox" id=3]
+[ext_resource path="res://scripts/IngredientHandler.gd" type="Script" id=4]
+[ext_resource path="res://scripts/RecipeHandler.gd" type="Script" id=5]
+[ext_resource path="res://scripts/OutputHandler.gd" type="Script" id=6]
+[ext_resource path="res://scripts/ButtonLoader.gd" type="Script" id=7]
+[ext_resource path="res://scripts/OptionLoader.gd" type="Script" id=8]
+[ext_resource path="res://scripts/DragHelper.gd" type="Script" id=9]
+[ext_resource path="res://scripts/ScrollHelper.gd" type="Script" id=10]
+[ext_resource path="res://styles/toolbar_normal.tres" type="StyleBox" id=11]
+[ext_resource path="res://styles/tollbar_highlight.tres" type="StyleBox" id=12]
+[ext_resource path="res://styles/toolbar_use.tres" type="StyleBox" id=13]
+[ext_resource path="res://scripts/TabManager.gd" type="Script" id=14]
+[ext_resource path="res://scripts/GraphLoader.gd" type="Script" id=15]
+[ext_resource path="res://scripts/DataManager.gd" type="Script" id=16]
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxEmpty" id=2]
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[sub_resource type="StyleBoxEmpty" id=5]
+
+[sub_resource type="StyleBoxEmpty" id=6]
+
+[sub_resource type="StyleBoxEmpty" id=7]
+
+[node name="Control" type="Control"]
+anchor_right = 0.999
+anchor_bottom = 1.167
+margin_top = 1.0
+margin_right = 1.02399
+margin_bottom = -126.588
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Panel" type="Panel" parent="."]
+margin_top = -1.0
+margin_right = 1024.0
+margin_bottom = 764.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Split" type="VSplitContainer" parent="Panel"]
+margin_top = 1.0
+margin_right = 1023.0
+margin_bottom = 762.0
+dragger_visibility = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Toolbar" type="HBoxContainer" parent="Panel/Split"]
+margin_right = 1023.0
+margin_bottom = 16.0
+custom_constants/separation = 0
+
+[node name="ImportButton" type="Button" parent="Panel/Split/Toolbar"]
+margin_right = 120.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 120, 0 )
+custom_styles/hover = ExtResource( 12 )
+custom_styles/focus = ExtResource( 13 )
+custom_styles/normal = ExtResource( 11 )
+action_mode = 0
+text = "Import"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ExportButton" type="Button" parent="Panel/Split/Toolbar"]
+margin_left = 120.0
+margin_right = 240.0
+margin_bottom = 16.0
+rect_min_size = Vector2( 120, 0 )
+custom_styles/hover = ExtResource( 12 )
+custom_styles/focus = ExtResource( 13 )
+custom_styles/normal = ExtResource( 11 )
+action_mode = 0
+text = "Export"
+
+[node name="Panel" type="PanelContainer" parent="Panel/Split"]
+margin_top = 16.0
+margin_right = 1023.0
+margin_bottom = 761.0
+
+[node name="Tab" type="TabContainer" parent="Panel/Split/Panel"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1016.0
+margin_bottom = 738.0
+tab_align = 0
+
+[node name="Calculator" type="HSplitContainer" parent="Panel/Split/Panel/Tab"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 4.0
+margin_top = 32.0
+margin_right = -4.0
+margin_bottom = -4.0
+split_offset = 340
+dragger_visibility = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Items" type="PanelContainer" parent="Panel/Split/Panel/Tab/Calculator"]
+margin_right = 643.0
+margin_bottom = 695.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VSplitContainer" parent="Panel/Split/Panel/Tab/Calculator/Items"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 636.0
+margin_bottom = 688.0
+split_offset = 520
+dragger_visibility = 1
+
+[node name="View" type="HSplitContainer" parent="Panel/Split/Panel/Tab/Calculator/Items/Container"]
+margin_right = 629.0
+margin_bottom = 649.0
+split_offset = 38
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IngredientSplit" type="VSplitContainer" parent="Panel/Split/Panel/Tab/Calculator/Items/Container/View"]
+margin_right = 238.0
+margin_bottom = 649.0
+rect_min_size = Vector2( 200, 240 )
+custom_constants/separation = 0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Items/Container/View/IngredientSplit"]
+margin_right = 238.0
+margin_bottom = 14.0
+text = "Ingredients"
+align = 1
+valign = 2
+clip_text = true
+
+[node name="IngredientList" type="ItemList" parent="Panel/Split/Panel/Tab/Calculator/Items/Container/View/IngredientSplit"]
+margin_top = 22.0
+margin_right = 238.0
+margin_bottom = 649.0
+allow_rmb_select = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="RecipeSplit" type="VSplitContainer" parent="Panel/Split/Panel/Tab/Calculator/Items/Container/View"]
+margin_left = 250.0
+margin_right = 629.0
+margin_bottom = 649.0
+rect_min_size = Vector2( 200, 240 )
+custom_constants/separation = 0
+dragger_visibility = 1
+
+[node name="Label" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Items/Container/View/RecipeSplit"]
+margin_right = 379.0
+margin_bottom = 14.0
+text = "Recipes"
+align = 1
+clip_text = true
+
+[node name="RecipeList" type="ItemList" parent="Panel/Split/Panel/Tab/Calculator/Items/Container/View/RecipeSplit"]
+margin_top = 22.0
+margin_right = 379.0
+margin_bottom = 649.0
+rect_min_size = Vector2( 200, 0 )
+allow_rmb_select = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Add" type="HSplitContainer" parent="Panel/Split/Panel/Tab/Calculator/Items/Container"]
+margin_top = 661.0
+margin_right = 629.0
+margin_bottom = 681.0
+split_offset = 38
+dragger_visibility = 1
+
+[node name="AddIngredient" type="Button" parent="Panel/Split/Panel/Tab/Calculator/Items/Container/Add"]
+margin_right = 238.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 200, 0 )
+text = "Add Ingredient"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AddRecipe" type="Button" parent="Panel/Split/Panel/Tab/Calculator/Items/Container/Add"]
+margin_left = 250.0
+margin_right = 629.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 200, 0 )
+text = "Add Recipe"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Info" type="PanelContainer" parent="Panel/Split/Panel/Tab/Calculator"]
+margin_left = 655.0
+margin_right = 1001.0
+margin_bottom = 695.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="Panel/Split/Panel/Tab/Calculator/Info"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 339.0
+margin_bottom = 688.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Ingredients" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container"]
+margin_right = 332.0
+margin_bottom = 14.0
+text = "Ingredient"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IngredientContainer" type="PanelContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container"]
+margin_top = 18.0
+margin_right = 332.0
+margin_bottom = 106.0
+
+[node name="Holder" type="VBoxContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/IngredientContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 325.0
+margin_bottom = 81.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/IngredientContainer/Holder"]
+margin_right = 318.0
+margin_bottom = 14.0
+text = "Name"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="IngredientName" type="LineEdit" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/IngredientContainer/Holder"]
+margin_top = 18.0
+margin_right = 318.0
+margin_bottom = 42.0
+max_length = 32
+placeholder_text = "Type ingredient name..."
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/IngredientContainer/Holder"]
+margin_top = 46.0
+margin_right = 318.0
+margin_bottom = 50.0
+custom_styles/separator = SubResource( 1 )
+
+[node name="IngredientSave" type="Button" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/IngredientContainer/Holder"]
+margin_top = 54.0
+margin_right = 318.0
+margin_bottom = 74.0
+text = "Save"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container"]
+margin_top = 110.0
+margin_right = 332.0
+margin_bottom = 114.0
+custom_styles/separator = SubResource( 2 )
+
+[node name="Recipe" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container"]
+margin_top = 118.0
+margin_right = 332.0
+margin_bottom = 132.0
+text = "Recipe"
+
+[node name="RecipeContainer" type="PanelContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container"]
+margin_top = 136.0
+margin_right = 332.0
+margin_bottom = 510.0
+
+[node name="Scroll" type="ScrollContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 325.0
+margin_bottom = 367.0
+rect_min_size = Vector2( 306, 360 )
+scroll_horizontal_enabled = false
+
+[node name="Holder" type="VBoxContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll"]
+margin_right = 306.0
+margin_bottom = 468.0
+
+[node name="Label" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder"]
+margin_right = 306.0
+margin_bottom = 14.0
+text = "Name"
+
+[node name="RecipeName" type="LineEdit" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder"]
+margin_top = 18.0
+margin_right = 306.0
+margin_bottom = 42.0
+max_length = 32
+placeholder_text = "Type recipe name..."
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder"]
+margin_top = 46.0
+margin_right = 306.0
+margin_bottom = 50.0
+custom_styles/separator = ExtResource( 3 )
+
+[node name="ListContainer" type="PanelContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder"]
+margin_top = 54.0
+margin_right = 306.0
+margin_bottom = 318.0
+rect_min_size = Vector2( 0, 120 )
+
+[node name="Split" type="VBoxContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 299.0
+margin_bottom = 257.0
+
+[node name="LabelInfo" type="HSplitContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split"]
+margin_right = 292.0
+margin_bottom = 14.0
+split_offset = 135
+
+[node name="Ingredient" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/LabelInfo"]
+margin_right = 201.0
+margin_bottom = 14.0
+text = "Ingredient"
+
+[node name="Amount" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/LabelInfo"]
+margin_left = 213.0
+margin_right = 292.0
+margin_bottom = 14.0
+text = "Amount"
+
+[node name="Holder" type="HSplitContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split"]
+margin_top = 18.0
+margin_right = 292.0
+margin_bottom = 218.0
+rect_min_size = Vector2( 0, 200 )
+dragger_visibility = 1
+
+[node name="RecipeIngredients" type="ItemList" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/Holder"]
+margin_right = 200.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 200, 200 )
+allow_rmb_select = true
+
+[node name="RecipeAmounts" type="ItemList" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/Holder"]
+margin_left = 212.0
+margin_right = 292.0
+margin_bottom = 200.0
+rect_min_size = Vector2( 80, 200 )
+allow_rmb_select = true
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split"]
+margin_top = 222.0
+margin_right = 292.0
+margin_bottom = 226.0
+custom_styles/separator = SubResource( 3 )
+
+[node name="IngredientOptions" type="MenuButton" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split"]
+margin_top = 230.0
+margin_right = 292.0
+margin_bottom = 250.0
+toggle_mode = false
+button_mask = 3
+text = "Click to add..."
+flat = false
+align = 0
+
+[node name="HSeparator3" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder"]
+margin_top = 322.0
+margin_right = 306.0
+margin_bottom = 326.0
+custom_styles/separator = ExtResource( 3 )
+
+[node name="ResultContainer" type="PanelContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder"]
+margin_top = 330.0
+margin_right = 306.0
+margin_bottom = 436.0
+
+[node name="Holder" type="VBoxContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ResultContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 299.0
+margin_bottom = 99.0
+
+[node name="ResultInfo" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ResultContainer/Holder"]
+margin_right = 292.0
+margin_bottom = 14.0
+text = "Result"
+
+[node name="Result" type="OptionButton" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ResultContainer/Holder"]
+margin_top = 18.0
+margin_right = 292.0
+margin_bottom = 38.0
+text = "Click to select ingredient..."
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ResultContainer/Holder"]
+margin_top = 42.0
+margin_right = 292.0
+margin_bottom = 46.0
+custom_styles/separator = SubResource( 4 )
+
+[node name="AmountInfo" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ResultContainer/Holder"]
+margin_top = 50.0
+margin_right = 292.0
+margin_bottom = 64.0
+text = "Amount"
+
+[node name="Amount" type="LineEdit" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ResultContainer/Holder"]
+margin_top = 68.0
+margin_right = 292.0
+margin_bottom = 92.0
+placeholder_text = "1"
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder"]
+margin_top = 440.0
+margin_right = 306.0
+margin_bottom = 444.0
+custom_styles/separator = SubResource( 5 )
+
+[node name="RecipeSave" type="Button" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder"]
+margin_top = 448.0
+margin_right = 306.0
+margin_bottom = 468.0
+text = "Save"
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container"]
+margin_top = 514.0
+margin_right = 332.0
+margin_bottom = 518.0
+custom_styles/separator = SubResource( 6 )
+
+[node name="Output" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container"]
+margin_top = 522.0
+margin_right = 332.0
+margin_bottom = 536.0
+text = "Output"
+
+[node name="OutputContainer" type="PanelContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container"]
+margin_top = 540.0
+margin_right = 332.0
+margin_bottom = 678.0
+
+[node name="Holder" type="VBoxContainer" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/OutputContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 325.0
+margin_bottom = 131.0
+
+[node name="NameInfo" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/OutputContainer/Holder"]
+margin_right = 318.0
+margin_bottom = 14.0
+text = "Name"
+
+[node name="OutputName" type="OptionButton" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/OutputContainer/Holder"]
+margin_top = 18.0
+margin_right = 318.0
+margin_bottom = 38.0
+text = "Select an ingredient..."
+
+[node name="HSeparator" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/OutputContainer/Holder"]
+margin_top = 42.0
+margin_right = 318.0
+margin_bottom = 46.0
+custom_styles/separator = ExtResource( 3 )
+
+[node name="AmountInfo" type="Label" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/OutputContainer/Holder"]
+margin_top = 50.0
+margin_right = 318.0
+margin_bottom = 64.0
+text = "Amount"
+
+[node name="OutputAmount" type="LineEdit" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/OutputContainer/Holder"]
+margin_top = 68.0
+margin_right = 318.0
+margin_bottom = 92.0
+placeholder_text = "1"
+
+[node name="HSeparator2" type="HSeparator" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/OutputContainer/Holder"]
+margin_top = 96.0
+margin_right = 318.0
+margin_bottom = 100.0
+custom_styles/separator = SubResource( 7 )
+
+[node name="Calculate" type="Button" parent="Panel/Split/Panel/Tab/Calculator/Info/Container/OutputContainer/Holder"]
+margin_top = 104.0
+margin_right = 318.0
+margin_bottom = 124.0
+rect_pivot_offset = Vector2( 57, 10 )
+text = "Calculate"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Dialog" type="Node" parent="."]
+
+[node name="Import" type="FileDialog" parent="Dialog"]
+margin_left = 193.81
+margin_top = 195.365
+margin_right = 834.81
+margin_bottom = 542.365
+popup_exclusive = true
+window_title = "Open a File"
+mode = 0
+access = 2
+filters = PoolStringArray( "*.json" )
+current_dir = "/"
+current_path = "/"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Export" type="FileDialog" parent="Dialog"]
+margin_left = 194.0
+margin_top = 196.0
+margin_right = 831.0
+margin_bottom = 538.0
+popup_exclusive = true
+window_title = "Export your recipe calculation"
+access = 2
+filters = PoolStringArray( "*.json" )
+current_dir = "/"
+current_path = "/"
+
+[node name="WindowDialog" type="WindowDialog" parent="Dialog"]
+margin_left = 315.62
+margin_top = 166.594
+margin_right = 602.62
+margin_bottom = 319.594
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="Dialog/WindowDialog"]
+margin_right = 287.0
+margin_bottom = 152.0
+align = 1
+valign = 1
+
+[node name="Templates" type="Node" parent="."]
+
+[node name="Graph" type="Node" parent="Templates"]
+
+[node name="RecipeNode" type="GraphNode" parent="Templates/Graph"]
+visible = false
+margin_right = 374.0
+margin_bottom = 350.0
+rect_min_size = Vector2( 374, 350 )
+title = "name"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 0.0745098, 0.305882, 0.447059, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 0.0901961, 0.6, 0.8, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="VBoxContainer" parent="Templates/Graph/RecipeNode"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 358.0
+margin_bottom = 56.0
+
+[node name="Result" type="PanelContainer" parent="Templates/Graph/RecipeNode/Container"]
+margin_right = 342.0
+margin_bottom = 98.0
+
+[node name="Box" type="VBoxContainer" parent="Templates/Graph/RecipeNode/Container/Result"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 335.0
+margin_bottom = 91.0
+
+[node name="Label" type="Label" parent="Templates/Graph/RecipeNode/Container/Result/Box"]
+margin_right = 328.0
+margin_bottom = 14.0
+text = "Result"
+
+[node name="HSeparator" type="HSeparator" parent="Templates/Graph/RecipeNode/Container/Result/Box"]
+margin_top = 18.0
+margin_right = 328.0
+margin_bottom = 22.0
+
+[node name="Item" type="Label" parent="Templates/Graph/RecipeNode/Container/Result/Box"]
+margin_top = 26.0
+margin_right = 328.0
+margin_bottom = 40.0
+text = "Item: "
+
+[node name="Amount" type="Label" parent="Templates/Graph/RecipeNode/Container/Result/Box"]
+margin_top = 44.0
+margin_right = 328.0
+margin_bottom = 58.0
+text = "Amount: "
+
+[node name="HSeparator2" type="HSeparator" parent="Templates/Graph/RecipeNode/Container/Result/Box"]
+margin_top = 62.0
+margin_right = 328.0
+margin_bottom = 66.0
+
+[node name="Craft" type="Label" parent="Templates/Graph/RecipeNode/Container/Result/Box"]
+margin_top = 70.0
+margin_right = 328.0
+margin_bottom = 84.0
+text = "Used: "
+
+[node name="Recipe" type="PanelContainer" parent="Templates/Graph/RecipeNode/Container"]
+margin_top = 102.0
+margin_right = 342.0
+margin_bottom = 316.0
+
+[node name="Box" type="VBoxContainer" parent="Templates/Graph/RecipeNode/Container/Recipe"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 335.0
+margin_bottom = 207.0
+
+[node name="Label" type="Label" parent="Templates/Graph/RecipeNode/Container/Recipe/Box"]
+margin_right = 328.0
+margin_bottom = 14.0
+text = "Recipe"
+
+[node name="HSeparator" type="HSeparator" parent="Templates/Graph/RecipeNode/Container/Recipe/Box"]
+margin_top = 18.0
+margin_right = 328.0
+margin_bottom = 22.0
+
+[node name="Split" type="VSplitContainer" parent="Templates/Graph/RecipeNode/Container/Recipe/Box"]
+margin_top = 26.0
+margin_right = 328.0
+margin_bottom = 200.0
+dragger_visibility = 2
+
+[node name="Title" type="HBoxContainer" parent="Templates/Graph/RecipeNode/Container/Recipe/Box/Split"]
+margin_right = 328.0
+margin_bottom = 14.0
+
+[node name="Label" type="Label" parent="Templates/Graph/RecipeNode/Container/Recipe/Box/Split/Title"]
+margin_right = 140.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 140, 0 )
+text = "Ingredients"
+
+[node name="Label3" type="Label" parent="Templates/Graph/RecipeNode/Container/Recipe/Box/Split/Title"]
+margin_left = 144.0
+margin_right = 244.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 100, 0 )
+text = "Crafted"
+
+[node name="Label2" type="Label" parent="Templates/Graph/RecipeNode/Container/Recipe/Box/Split/Title"]
+margin_left = 248.0
+margin_right = 328.0
+margin_bottom = 14.0
+rect_min_size = Vector2( 80, 0 )
+text = "Amount"
+
+[node name="Info" type="HBoxContainer" parent="Templates/Graph/RecipeNode/Container/Recipe/Box/Split"]
+margin_top = 14.0
+margin_right = 328.0
+margin_bottom = 174.0
+
+[node name="Ingredients" type="ItemList" parent="Templates/Graph/RecipeNode/Container/Recipe/Box/Split/Info"]
+margin_right = 140.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 140, 160 )
+
+[node name="Crafted" type="ItemList" parent="Templates/Graph/RecipeNode/Container/Recipe/Box/Split/Info"]
+margin_left = 144.0
+margin_right = 244.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 100, 0 )
+
+[node name="Amounts" type="ItemList" parent="Templates/Graph/RecipeNode/Container/Recipe/Box/Split/Info"]
+margin_left = 248.0
+margin_right = 328.0
+margin_bottom = 160.0
+rect_min_size = Vector2( 80, 0 )
+
+[node name="IngredientNode" type="GraphNode" parent="Templates/Graph"]
+visible = false
+margin_right = 107.0
+margin_bottom = 62.0
+rect_min_size = Vector2( 120, 62 )
+title = "item"
+slot/0/left_enabled = true
+slot/0/left_type = 0
+slot/0/left_color = Color( 0.0745098, 0.305882, 0.447059, 1 )
+slot/0/right_enabled = true
+slot/0/right_type = 0
+slot/0/right_color = Color( 0.0901961, 0.6, 0.8, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Container" type="PanelContainer" parent="Templates/Graph/IngredientNode"]
+margin_left = 16.0
+margin_top = 24.0
+margin_right = 104.0
+margin_bottom = 38.0
+
+[node name="Box" type="VBoxContainer" parent="Templates/Graph/IngredientNode/Container"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 81.0
+margin_bottom = 21.0
+
+[node name="Amount" type="Label" parent="Templates/Graph/IngredientNode/Container/Box"]
+margin_right = 74.0
+margin_bottom = 14.0
+text = "Amount: "
+valign = 1
+
+[node name="Result" type="VSplitContainer" parent="Templates"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 11.0
+margin_top = 56.0
+margin_right = 3.0
+margin_bottom = 20.0
+dragger_visibility = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Controls" type="HBoxContainer" parent="Templates/Result"]
+margin_right = 1016.0
+margin_bottom = 20.0
+alignment = 2
+
+[node name="Button" type="Button" parent="Templates/Result/Controls"]
+margin_left = 896.0
+margin_right = 1016.0
+margin_bottom = 20.0
+rect_min_size = Vector2( 120, 20 )
+text = "Delete"
+
+[node name="View" type="MarginContainer" parent="Templates/Result"]
+margin_top = 32.0
+margin_right = 1016.0
+margin_bottom = 728.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Graph" type="GraphEdit" parent="Templates/Result/View"]
+margin_right = 1016.0
+margin_bottom = 696.0
+scroll_offset = Vector2( -15, -33 )
+use_snap = false
+
+[node name="Scripts" type="Node" parent="."]
+
+[node name="DataNode" type="Node" parent="Scripts"]
+script = ExtResource( 2 )
+
+[node name="SelectionLoader" type="Node" parent="Scripts"]
+script = ExtResource( 1 )
+
+[node name="IngredientHandler" type="Node" parent="Scripts"]
+script = ExtResource( 4 )
+
+[node name="RecipeHandler" type="Node" parent="Scripts"]
+script = ExtResource( 5 )
+
+[node name="OutputHandler" type="Node" parent="Scripts"]
+script = ExtResource( 6 )
+
+[node name="ButtonLoader" type="Node" parent="Scripts"]
+script = ExtResource( 7 )
+
+[node name="OptionLoader" type="Node" parent="Scripts"]
+script = ExtResource( 8 )
+
+[node name="DragHelper" type="Node" parent="Scripts"]
+script = ExtResource( 9 )
+
+[node name="ScrollHelper" type="Node" parent="Scripts"]
+script = ExtResource( 10 )
+
+[node name="TabManager" type="Node" parent="Scripts"]
+script = ExtResource( 14 )
+
+[node name="GraphLoader" type="Node" parent="Scripts"]
+script = ExtResource( 15 )
+
+[node name="DataManager" type="Node" parent="Scripts"]
+script = ExtResource( 16 )
+[connection signal="pressed" from="Panel/Split/Toolbar/ImportButton" to="Scripts/DataManager" method="_on_ImportButton_pressed"]
+[connection signal="pressed" from="Panel/Split/Toolbar/ExportButton" to="Scripts/DataManager" method="_on_ExportButton_pressed"]
+[connection signal="dragged" from="Panel/Split/Panel/Tab/Calculator/Items/Container/View" to="Scripts/DragHelper" method="_on_View_dragged"]
+[connection signal="item_rmb_selected" from="Panel/Split/Panel/Tab/Calculator/Items/Container/View/IngredientSplit/IngredientList" to="Scripts/SelectionLoader" method="_on_IngredientList_item_rmb_selected"]
+[connection signal="item_selected" from="Panel/Split/Panel/Tab/Calculator/Items/Container/View/IngredientSplit/IngredientList" to="Scripts/SelectionLoader" method="_on_IngredientList_item_selected"]
+[connection signal="item_rmb_selected" from="Panel/Split/Panel/Tab/Calculator/Items/Container/View/RecipeSplit/RecipeList" to="Scripts/SelectionLoader" method="_on_RecipeList_item_rmb_selected"]
+[connection signal="item_selected" from="Panel/Split/Panel/Tab/Calculator/Items/Container/View/RecipeSplit/RecipeList" to="Scripts/SelectionLoader" method="_on_RecipeList_item_selected"]
+[connection signal="dragged" from="Panel/Split/Panel/Tab/Calculator/Items/Container/Add" to="Scripts/DragHelper" method="_on_Add_dragged"]
+[connection signal="pressed" from="Panel/Split/Panel/Tab/Calculator/Items/Container/Add/AddIngredient" to="Scripts/ButtonLoader" method="_on_AddIngredient_pressed"]
+[connection signal="pressed" from="Panel/Split/Panel/Tab/Calculator/Items/Container/Add/AddRecipe" to="Scripts/ButtonLoader" method="_on_AddRecipe_pressed"]
+[connection signal="pressed" from="Panel/Split/Panel/Tab/Calculator/Info/Container/IngredientContainer/Holder/IngredientSave" to="Scripts/ButtonLoader" method="_on_IngredientSave_pressed"]
+[connection signal="item_rmb_selected" from="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/Holder/RecipeIngredients" to="Scripts/SelectionLoader" method="_on_RecipeIngredients_item_rmb_selected"]
+[connection signal="item_selected" from="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/Holder/RecipeIngredients" to="Scripts/SelectionLoader" method="_on_RecipeIngredients_item_selected"]
+[connection signal="item_rmb_selected" from="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/Holder/RecipeAmounts" to="Scripts/SelectionLoader" method="_on_RecipeAmounts_item_rmb_selected"]
+[connection signal="item_selected" from="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/Holder/RecipeAmounts" to="Scripts/SelectionLoader" method="_on_RecipeAmounts_item_selected"]
+[connection signal="item_selected" from="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ResultContainer/Holder/Result" to="Scripts/OptionLoader" method="_on_Result_item_selected"]
+[connection signal="pressed" from="Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/RecipeSave" to="Scripts/ButtonLoader" method="_on_RecipeSave_pressed"]
+[connection signal="pressed" from="Panel/Split/Panel/Tab/Calculator/Info/Container/OutputContainer/Holder/Calculate" to="Scripts/ButtonLoader" method="_on_Calculate_pressed"]
+[connection signal="file_selected" from="Dialog/Import" to="Scripts/DataManager" method="_on_Import_file_selected"]
+[connection signal="file_selected" from="Dialog/Export" to="Scripts/DataManager" method="_on_Export_file_selected"]
+[connection signal="connection_request" from="Templates/Result/View/Graph" to="Scripts/GraphLoader" method="_on_Graph_connection_request"]
