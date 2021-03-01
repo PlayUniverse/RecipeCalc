@@ -30,7 +30,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/PlayUniverse/RecipeCalc">
-    <img src="images/github.png" alt="Logo" width="256" height="134">
+    <img src="images/github.png" alt="Logo" width="230" height="120">
   </a>
 
   <h3 align="center">RecipeCalc</h3>
