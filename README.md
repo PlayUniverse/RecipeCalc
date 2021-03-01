@@ -30,7 +30,7 @@
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-  <a href="https://github.com/SourceWriters/vCompat">
+  <a href="https://github.com/PlayUniverse/RecipeCalc">
     <img src="images/logo.png" alt="Logo" width="121" height="91">
   </a>
 
