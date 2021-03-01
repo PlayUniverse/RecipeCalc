@@ -7,7 +7,6 @@
 ***
 ***
 *** To avoid retyping too much info. Do a search and replace for the following:
-*** SourceWriters, vCompat, twitter_handle, email, vCompat, project_description
 -->
 
 
@@ -31,7 +30,7 @@
 <br />
 <p align="center">
   <a href="https://github.com/PlayUniverse/RecipeCalc">
-    <img src="images/logo.png" alt="Logo" width="121" height="91">
+    <img src="icon.png" alt="Logo" width="121" height="91">
   </a>
 
   <h3 align="center">RecipeCalc</h3>
@@ -90,7 +89,7 @@ With the import and export button on top you can also load and save already made
 <!-- ROADMAP -->
 ## Roadmap
 
-See the [open issues](https://github.com/SourceWriters/vCompat/issues) for a list of proposed features (and known issues).
+See the [open issues](https://github.com/PlayUniverse/RecipeCalc/issues) for a list of proposed features (and known issues).
 
 
 
