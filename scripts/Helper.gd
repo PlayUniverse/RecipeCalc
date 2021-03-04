@@ -63,3 +63,30 @@ class NodeHelper:
 			items = inode[1];
 			index += 1;
 		return [node, items];
+		
+class Validation:
+	
+	var digit : RegEx = null;
+	var name : RegEx = null;
+	
+	func digit_regex() -> RegEx: 
+		if not digit == null:
+			return digit;
+		digit = RegEx.new();
+		digit.compile("^[0-9]+$");
+		return digit;
+		
+	func name_regex() -> RegEx:
+		if not name == null:
+			return name;
+		name = RegEx.new();
+		name.compile("^[^.:@\/\"]+$");
+		return name;
+	
+	func test_digit(var text : String) -> bool:
+		return not digit_regex().search(text) == null;
+	
+	func fix_name(var text : String) -> String:
+		if not name_regex().search(text) == null:
+			return text;
+		return text.replace(".", "-").replace(":", "_").replace("@", "").replace("\/", "").replace("\"", "");

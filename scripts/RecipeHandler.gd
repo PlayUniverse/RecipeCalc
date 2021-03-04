@@ -1,6 +1,7 @@
 extends DataHandler
 
 const Helper = preload("res://scripts/Helper.gd");
+var Validation = Helper.Validation.new();
 
 var data_name : LineEdit;
 var menu_button : MenuButton
@@ -154,12 +155,17 @@ func save(var data : DataNode):
 	if list.get_item_count() == 0:
 		return;
 	var old_name = list.get_item_text(list.get_selected_items()[0]);
-	var tmp_name = data_name.text;
+	var tmp_name = Validation.fix_name(data_name.text);
+	if not data_name.text == tmp_name:
+		data_name.text = tmp_name;
 	if not old_name == tmp_name:
 		var index : int = 0;
 		while data.holder.has_recipe(tmp_name):
 			tmp_name = data_name.text + str(index);
 		data_name.text = tmp_name;
+	if tmp_name.length() > 48:
+		data_name.text = old_name;
+		return;
 	list.set_item_text(list.get_selected_items()[0], data_name.text);
 	data.current_recipe_name = tmp_name;
 	var recipe : Recipe = data.get_recipe(old_name);
