@@ -28,9 +28,10 @@ func decrease(name : String) -> int:
 	if not contains(name):
 		return -1;
 	var index = ingredients.find(name);
+	var _ignore;
 	if(amounts[index] == 0):
 		amounts.remove(index);
-		remove(name);
+		_ignore = remove(name);
 		return 1;
 	amounts[index] = amounts[index] - 1;
 	return 0;

@@ -7,8 +7,8 @@ var created; # RNode
 var needed : int = 0;
 var overflow : int = 0;
 
-func _init(var name : String):
-	self.name = name;
+func _init(var _name : String):
+	self.name = _name;
 	
 func reset():
 	graphed = false;

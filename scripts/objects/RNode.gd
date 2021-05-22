@@ -14,8 +14,8 @@ func _init(var iname : String, var iresult : INode, var iamount : int):
 	result = iresult;
 	result.created = self;
 
-func iadd(var node : INode, var amount : int):
-	ingredients[node.name] = {"node": node, "amount": amount};
+func iadd(var node : INode, var _amount : int):
+	ingredients[node.name] = {"node": node, "amount": _amount};
 
 func iget(var node : INode) -> int:
 	return ingredients[node.name]["amount"];
@@ -29,8 +29,8 @@ func reset():
 	for node in ingredients.keys():
 		node.reset();
 
-func craft(var amount : int):
-	var requested = amount - result.overflow;
+func craft(var _amount : int):
+	var requested = _amount - result.overflow;
 	result.needed += result.overflow;
 	result.overflow = 0;
 	if requested == 0:

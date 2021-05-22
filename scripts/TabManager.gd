@@ -21,10 +21,11 @@ func create(var name : String, var amount : int) -> GraphEdit:
 	names[name] = gen_name;
 	var tab : VSplitContainer = template.duplicate();
 	tab.name = gen_name;
+	var _ignore;
 	var button : Button = tab.get_node('Controls/Button');
-	button.connect("pressed", self, "delete_tab", [gen_name]);
+	_ignore = button.connect("pressed", self, "delete_tab", [gen_name]);
 	var graph : GraphEdit = tab.get_node('View/Graph');
-	graph.connect("node_selected", handler, '_on_Graph_select', [graph]);
+	_ignore = graph.connect("node_selected", handler, '_on_Graph_select', [graph]);
 	container.add_child(tab);
 	return graph;
 	
@@ -41,6 +42,6 @@ func delete_tab(var name : String):
 	var tab : VSplitContainer = container.get_current_tab_control();
 	container.current_tab = container.current_tab - 1;
 	container.remove_child(tab);
-	names.erase(get_ingredient(name));
+	var _ignore = names.erase(get_ingredient(name));
 	tab.queue_free();
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/SelectionLoader.gd" type="Script" id=1]
 [ext_resource path="res://scripts/DataNode.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scripts/TabManager.gd" type="Script" id=14]
 [ext_resource path="res://scripts/GraphLoader.gd" type="Script" id=15]
 [ext_resource path="res://scripts/DataManager.gd" type="Script" id=16]
+[ext_resource path="res://scripts/GlobalHandler.gd" type="Script" id=17]
 
 [sub_resource type="StyleBoxEmpty" id=1]
 
@@ -42,8 +43,9 @@ __meta__ = {
 }
 
 [node name="Panel" type="Panel" parent="."]
+margin_left = 1.25989
 margin_top = -1.0
-margin_right = 1024.0
+margin_right = 1025.26
 margin_bottom = 764.0
 __meta__ = {
 "_edit_use_anchors_": false
@@ -815,6 +817,12 @@ script = ExtResource( 15 )
 
 [node name="DataManager" type="Node" parent="Scripts"]
 script = ExtResource( 16 )
+
+[node name="GlobalHandler" type="Node" parent="Scripts"]
+script = ExtResource( 17 )
+min_size = Vector2( 1024, 764 )
+node_path = "Panel/Split"
+
 [connection signal="pressed" from="Panel/Split/Toolbar/ImportButton" to="Scripts/DataManager" method="_on_ImportButton_pressed"]
 [connection signal="pressed" from="Panel/Split/Toolbar/ExportButton" to="Scripts/DataManager" method="_on_ExportButton_pressed"]
 [connection signal="dragged" from="Panel/Split/Panel/Tab/Calculator/Items/Container/View" to="Scripts/DragHelper" method="_on_View_dragged"]

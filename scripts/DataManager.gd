@@ -28,8 +28,8 @@ func fail(var text : String):
 	error_popup.get_node('Label').text = text;
 	error_popup.popup_centered();
 
-func _on_Export_file_selected(path):
-	if not path.ends_with(".json"):
+func _on_Export_file_selected(_path):
+	if not _path.ends_with(".json"):
 		fail("You can only save .json files!");
 		return;
 	var output : Dictionary = {};
@@ -38,7 +38,7 @@ func _on_Export_file_selected(path):
 	output["loaded"] = save_loaded();
 	var printable = JSON.print(output, "\t", false);
 	var file : File = File.new();
-	file.open(path, File.WRITE);
+	var _ignore = file.open(_path, File.WRITE);
 	file.store_string(printable);
 	file.close();
 	
@@ -86,18 +86,18 @@ func save_loaded() -> Dictionary:
 	}
 	return output;
 
-func _on_Import_file_selected(path):
-	print(path);
-	if not path.ends_with(".json"):
+func _on_Import_file_selected(_path):
+	print(_path);
+	if not _path.ends_with(".json"):
 		fail("You can only load .json files!");
 		return;
 	var file : File = File.new();
-	file.open(path, File.READ);
+	var _ignore = file.open(_path, File.READ);
 	var content = file.get_as_text();
 	file.close();
 	var parse_result : JSONParseResult = JSON.parse(content);
 	if not parse_result.error == 0:
-		var parts = path.split("/");
+		var parts = _path.split("/");
 		fail("Failed to load " + parts[parts.size() - 1]);
 		return;
 	data.recipes.clear();
@@ -130,6 +130,7 @@ func _on_Import_file_selected(path):
 	data.update();
 			
 func load_recipes(var recipes : Dictionary):
+	var _ignore;
 	for key in recipes.keys():
 		if not typeof(key) == TYPE_STRING:
 			continue;
@@ -179,7 +180,7 @@ func load_recipes(var recipes : Dictionary):
 				recipe.ingredients.append(key0);
 				recipe.amounts.append(int(value0));
 			if ingreds == null:
-				data.recipes.erase(name);
+				_ignore = data.recipes.erase(name);
 
 func load_loaded(var loaded : Dictionary):
 	if "ingredient" in loaded:

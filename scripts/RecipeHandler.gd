@@ -14,10 +14,11 @@ var result_options : OptionButton;
 var result_amount : LineEdit;
 
 func _ready():
+	var _ignore;
 	data_name = get_node('/root/Control/Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/RecipeName');
 	menu_button = get_node('/root/Control/Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/IngredientOptions');
 	data_options = menu_button.get_popup();
-	data_options.connect("id_pressed", get_node('/root/Control/Scripts/OptionLoader'), "_on_IngredientOptions_id_pressed");
+	_ignore = data_options.connect("id_pressed", get_node('/root/Control/Scripts/OptionLoader'), "_on_IngredientOptions_id_pressed");
 	data_list = get_node('/root/Control/Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/Holder/RecipeIngredients');
 	amount_list = get_node('/root/Control/Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ListContainer/Split/Holder/RecipeAmounts');
 	result_options = get_node('/root/Control/Panel/Split/Panel/Tab/Calculator/Info/Container/RecipeContainer/Scroll/Holder/ResultContainer/Holder/Result');
@@ -56,7 +57,7 @@ func update(var data : DataNode):
 			continue;
 		index = index + 1;
 	
-func handle_increase(var index : int, var data : DataNode):
+func handle_increase(var index : int, var _data : DataNode):
 	amount_list.set_item_text(index, str(int(amount_list.get_item_text(index)) + 1));
 	
 func handle_decrease(var index : int, var data : DataNode):

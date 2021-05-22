@@ -1,7 +1,7 @@
 extends Node
 class_name GraphLoader
 
-func _on_Graph_select(var node, var graph : GraphEdit):
+func _on_Graph_select(var _node, var graph : GraphEdit):
 	graph.set_selected(null);
 
 

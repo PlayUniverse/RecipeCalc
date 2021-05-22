@@ -41,8 +41,8 @@ func _on_RecipeIngredients_item_rmb_selected(index, _at_position):
 	data.r_handler.handle_decrease(index, data);
 	data.r_handler.data_list.unselect_all();
 
-func _on_RecipeAmounts_item_selected(index):
+func _on_RecipeAmounts_item_selected(_index):
 	data.r_handler.amount_list.unselect_all();
 
-func _on_RecipeAmounts_item_rmb_selected(index, _at_position):
+func _on_RecipeAmounts_item_rmb_selected(_index, _at_position):
 	data.r_handler.amount_list.unselect_all();

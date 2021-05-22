@@ -83,7 +83,7 @@ func add_ingredient_node(var node : INode, var graph : GraphEdit, var root : boo
 		gnode.set_slot(0, true, 0, gnode.get_slot_color_left(0), false, 0, gnode.get_slot_color_right(0));
 		return;
 	add_recipe_node(node.created, graph, offset);
-	graph.connect_node(gnode.name, 0, "r_" + node.created.name, 0);
+	var _ignore = graph.connect_node(gnode.name, 0, "r_" + node.created.name, 0);
 	
 func add_recipe_node(var node : RNode, var graph : GraphEdit, var offset : Dictionary):
 	if node.graphed:
@@ -104,6 +104,7 @@ func add_recipe_node(var node : RNode, var graph : GraphEdit, var offset : Dicti
 	var list0 : ItemList = gnode.get_node('Container/Recipe/Box/Split/Info/Ingredients');
 	var list1 : ItemList = gnode.get_node('Container/Recipe/Box/Split/Info/Amounts');
 	var list2 : ItemList = gnode.get_node('Container/Recipe/Box/Split/Info/Crafted');
+	var _ignore;
 	for ingredient_name in node.ingredients:
 		var ingredient_data = node.ingredients[ingredient_name];
 		list0.add_item(ingredient_name);
@@ -111,7 +112,7 @@ func add_recipe_node(var node : RNode, var graph : GraphEdit, var offset : Dicti
 		list1.add_item(str(count));
 		list2.add_item(str(count * node.crafted));
 		add_ingredient_node(ingredient_data["node"], graph, false, offset);
-		graph.connect_node(gnode.name, 0, "i_" + ingredient_name, 0);
+		_ignore = graph.connect_node(gnode.name, 0, "i_" + ingredient_name, 0);
 
 func get_graph_node(var graph : GraphEdit, var name : String) -> GraphNode:
 	for node in graph.get_children():
@@ -119,7 +120,7 @@ func get_graph_node(var graph : GraphEdit, var name : String) -> GraphNode:
 			return node;
 	return null;
 
-func repose(var node : GraphNode, var graph : GraphEdit, var gnode : GNode, var offset : Dictionary):
+func repose(var node : GraphNode, var _graph : GraphEdit, var gnode : GNode, var offset : Dictionary):
 	if not gnode.id in offset:
 		offset[gnode.id] = [{"x": 0, "y": 0, "id": gnode.id - 1, "idx": -1}];
 	var array : Array = offset[gnode.id]

@@ -100,5 +100,6 @@ func internal_update():
 			if not holder.has_ingredient(ingredient):
 				remove.append(key);
 				break;
+	var _ignore;
 	for item in remove:
-		recipes.erase(item);
+		_ignore = recipes.erase(item);

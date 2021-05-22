@@ -4,7 +4,7 @@ var id = 0;
 
 var graphed : bool = false;
 
-func craft(var amount : int):
+func craft(var _amount : int):
 	pass
 	
 func reset():

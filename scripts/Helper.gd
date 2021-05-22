@@ -72,15 +72,17 @@ class Validation:
 	func digit_regex() -> RegEx: 
 		if not digit == null:
 			return digit;
+		var _ignore;
 		digit = RegEx.new();
-		digit.compile("^[0-9]+$");
+		_ignore = digit.compile("^[0-9]+$");
 		return digit;
 		
 	func name_regex() -> RegEx:
 		if not name == null:
 			return name;
+		var _ignore;
 		name = RegEx.new();
-		name.compile("^[^.:@\/\"]+$");
+		_ignore = name.compile("^[^.:@\/\"]+$");
 		return name;
 	
 	func test_digit(var text : String) -> bool:
