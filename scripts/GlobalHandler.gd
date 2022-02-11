@@ -8,8 +8,6 @@ var root_node : Control;
 var window_size : Vector2;
 var window_position : Vector2;
 
-var mesh2d : MeshInstance2D;
-
 func _ready():
 	root_node = get_node('/root/Control/' + node_path);
 	window_size = OS.get_window_size();
